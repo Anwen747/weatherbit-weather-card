@@ -78,9 +78,9 @@ entity_summary_4: sensor.wbit_day4_text
 entity_summary_5: sensor.wbit_day5_text
 ~~~~
 
-Optional entries add components to the card.  The daytime high and all pop entities require template sensors (see below).<br>
+Optional entries add components to the card.  The daytime high and all pop and precip entities require template sensors (see below).<br>
 ***Please note entity_pop_1 to 5 lines must all be included for daily pop (probability of precip) to show in forecast.<br>
-***Please note entity_pos_1 to 5 lines must all be included for daily pos (possible precipitation) to show in forecast.
+***Please note entity_pos_1 to 5 lines must all be included for daily precip (forecast amount of precipitation) to show in forecast.
 
 ~~~~
 entity_sun: sun.sun
@@ -93,9 +93,7 @@ entity_humidity: sensor.weatherbit_humidity
 entity_pressure: sensor.weatherbit_pressure
 entity_apparent_temp: sensor.weatherbit_apparent_temperature
 entity_dewpoint: sensor.weatherbit_dewpoint
-entity_daily_summary: *not used*
 entity_pop: sensor.wbit_day1_pop
-entity_pop_intensity: *not used*
 entity_pop_1: sensor.wbit_day1_pop
 entity_pop_2: sensor.wbit_day2_pop
 entity_pop_3: sensor.wbit_day3_pop
