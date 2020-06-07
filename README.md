@@ -48,7 +48,7 @@ resources:
 
 3. Add the card definition:  There are required / optional and flag entries.
 
-Required entries must be present in your configuration.  The card will not work at all if any of these lines are missing.  The sensors for forecast high temperatures, forecast low temperatures, and entity summaries are created with template sensors (see below).
+Required entries must be present in your configuration.  The card will not work at all if any of these lines are missing.  The current_conditions entity will have a name specific to your location.  The sensors for forecast high temperatures, forecast low temperatures, and entity summaries are created with template sensors (see below).
 
 (Day 1 forecast data for Weatherbit is the for current day.  The card as shown uses the current day as the first forecast day.  If you prefer to have the first forecast day show tomorrow's data, change the sensors accordingly.)
 
@@ -78,8 +78,8 @@ entity_summary_4: sensor.wbit_day4_text
 entity_summary_5: sensor.wbit_day5_text
 ~~~~
 
-Optional entries add components to the card.  The daytime high and all pop entities require template sensors (see below).
-***Please note entity_pop_1 to 5 lines must all be included for daily pop (probability of precip) to show in forecast.
+Optional entries add components to the card.  The daytime high and all pop entities require template sensors (see below).<br>
+***Please note entity_pop_1 to 5 lines must all be included for daily pop (probability of precip) to show in forecast.<br>
 ***Please note entity_pos_1 to 5 lines must all be included for daily pos (possible precipitation) to show in forecast.
 
 ~~~~
@@ -143,7 +143,7 @@ wbit_day1_precip:
 wbit_day1_text:
   value_template: "{{ state_attr('sensor.weatherbit_forecast_day_1', 'weather_text') }}"
 ~~~~~
-**Note on the ```wbit_day*n*_text``` sensors** - If you do not wish to use the tooltip popup feature, you do not need to define these five template sensors.  Simply replace them in the card config with ```sensor.weatherbit_description``` for all five ```entity_summary_*n*:``` entries.
+**Note:  If you do not wish to use the tooltip popup feature, you do not need to define these five template sensors.  Simply replace them in the card config with ```sensor.weatherbit_description``` for all five ```entity_summary_*n*:``` entries.
 ~~~~~
 wbit_alt_wind:
   value_template: >-
