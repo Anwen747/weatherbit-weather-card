@@ -35,9 +35,9 @@ If you are using yaml mode:
 If you are using storage mode in 0.84 or above:
     - Use the "Raw Config Editor" to add the reference and definition to the config.
 
-2. Add the card reference at the top of the configuration
+2. Add the card reference at the top of the configuration:
 
-   **Note: Ensure type is set to module and not js**
+   **Note: Ensure type is set to module and not js.**<br>
    **Note: /local/ points to the ```<config-dir>/www/``` dir.**
 
 ~~~~
@@ -48,7 +48,9 @@ resources:
 
 3. Add the card definition:  There are required / optional and flag entries.
 
-Required entries must be present in your configuration.  The card will not work at all if any of these lines are missing.  The sensors for forecast high temperatures, forecast low temperatures, and entity summaries are created with template sensors (see below).  (Day 1 forecast data for Weatherbit is the for current day.  The card as shown uses the current day as the first forecast day.  If you prefer to have the first forecast day show tomorrow's data, change the sensors accordingly.)
+Required entries must be present in your configuration.  The card will not work at all if any of these lines are missing.  The sensors for forecast high temperatures, forecast low temperatures, and entity summaries are created with template sensors (see below).
+
+(Day 1 forecast data for Weatherbit is the for current day.  The card as shown uses the current day as the first forecast day.  If you prefer to have the first forecast day show tomorrow's data, change the sensors accordingly.)
 
 ~~~~
 type: 'custom:weatherbit-weather-card'
@@ -77,25 +79,8 @@ entity_summary_5: sensor.wbit_day5_text
 ~~~~
 
 Optional entries add components to the card.  The daytime high and all pop entities require template sensors (see below).
-***Please note entity_pop_1 to 5 lines must all be included for daily pop (probability of precip) to show in forecast
-~~~~
-entity_sun: sun.sun
-entity_visibility: sensor.dark_sky_visibility
-entity_daytime_high: sensor.dark_sky_daytime_high_temperature_0d
-entity_wind_bearing: sensor.dark_sky_wind_bearing
-entity_wind_speed: sensor.dark_sky_wind_speed
-entity_humidity: sensor.dark_sky_humidity
-entity_pressure: sensor.dark_sky_pressure
-entity_apparent_temp: sensor.dark_sky_apparent_temperature
-entity_daily_summary: sensor.dark_sky_daily_summary
-entity_pop: sensor.dark_sky_precip_probability
-entity_pop_intensity: sensor.dark_sky_precip_intensity
-entity_pop_1: sensor.dark_sky_precip_probability_1d
-entity_pop_2: sensor.dark_sky_precip_probability_2d
-entity_pop_3: sensor.dark_sky_precip_probability_3d
-entity_pop_4: sensor.dark_sky_precip_probability_4d
-entity_pop_5: sensor.dark_sky_precip_probability_5d
-~~~~
+***Please note entity_pop_1 to 5 lines must all be included for daily pop (probability of precip) to show in forecast.
+***Please note entity_pos_1 to 5 lines must all be included for daily pos (possible precipitation) to show in forecast.
 
 ~~~~
 entity_sun: sun.sun
@@ -138,24 +123,28 @@ alt_humidity: sensor.wbit_alt_humidity
 wbit_day1_high:
   value_template: "{{ state_attr('sensor.weatherbit_forecast_day_1', 'temperature') }}"
   unit_of_measurement: '°F'
-
+~~~~~
+~~~~~
 wbit_day1_low:
   value_template: "{{ state_attr('sensor.weatherbit_forecast_day_1', 'templow') }}"
   unit_of_measurement: '°F'
-
+~~~~~
+~~~~~
 wbit_day1_pop:
   value_template: "{{ state_attr('sensor.weatherbit_forecast_day_1', 'precip_prob') }}"
   unit_of_measurement: '%'
-
+~~~~~
+~~~~~
 wbit_day1_precip:
   value_template: "{{ state_attr('sensor.weatherbit_forecast_day_1', 'precipitation') }}"
   unit_of_measurement: 'in'
-
+~~~~~
+~~~~~
 wbit_day1_text:
   value_template: "{{ state_attr('sensor.weatherbit_forecast_day_1', 'weather_text') }}"
-
+~~~~~
 **Note on the ```wbit_day*n*_text``` sensors** - If you do not wish to use the tooltip popup feature, you do not need to define these five template sensors.  Simply replace them in the card config with ```sensor.weatherbit_description``` for all five ```entity_summary_*n*:``` entries.
-
+~~~~~
 wbit_alt_wind:
   value_template: >-
                   {% set winddir = ['North','North-Northeast','Northeast','East-Northeast','East','East-Southeast','Southeast','South-Southeast','South','South-Southwest','Southwest','West-Southwest','West','West-Northwest','Northwest','North-Northwest','North'] %}
@@ -208,20 +197,20 @@ slot_r4: sun_following
 | show_beaufort            | true / **false**            | Shows Beaufort Scale wind information                                       |
 | show_separator           | true / **false**            | Shows separator between current conditions columns and current temp / Icon  |
 | time_format              | **locale** / 12 / 24        | Sets the format sunset and sunrise times. locale format is the default.     |
-| temp_top_margin          | **-.3em** / px or em value  | Sets the top margin of the Temperature.                                     |
+| temp_top_margin          | **0em** / px or em value  | Sets the top margin of the Temperature.                                     |
 | temp_font_weight         | **300** / numeric value     | Sets the font weight of the Temperature.                                    |
 | temp_font_size           | **4em** / em value          | Sets the font size of the Temperature.                                      |
 | temp_right_pos           | **.85em** / px or em value  | Sets the right position of the Temperature.                                 |
-| temp_uom_top_margin      | **-9px** / px or em value   | Sets the top margin of the Temperature Unit of Meaure.                      |
+| temp_uom_top_margin      | **-12px** / px or em value   | Sets the top margin of the Temperature Unit of Meaure.                      |
 | temp_uom_right_margin    | **7px** / px or em value    | Sets the right margin of the Temperature Unit of Measure.                   |
 | apparent_top_margin      | **39px** / px or em value   | Sets the top margin of the apparent (feels Like) temperature                |
 | apparent_right_pos       | **1em** / px or em value    | Sets the right position of the apparent (feels Like) temperature            |
 | apparent_right_margin    | **1em** / px or em value    | Sets the right margin of the apparent (feels Like) temperature              |
 | current_text_top_margin  | **39px** / px or em value   | Sets the top margin of the current temperature text                         |
-| current_text_left_pos    | **5em** / px or em value    | Sets the left position of the current temperature text                      |
+| current_text_left_pos    | **0em** / px or em value    | Sets the left position of the current temperature text                      |
 | current_text_font_size   | **1.5em** / em value        | Sets the font size of the current temperature text                          |
 | current_data_top_margin  | **6em** / px or em value    | Sets the top margin of the current data blocks                              |
-| large_icon_top_margin    | **-3.5em** / px or em value | Sets the top margin of the current conditions icon                          |
+| large_icon_top_margin    | **-3.2em** / px or em value | Sets the top margin of the current conditions icon                          |
 | large_icon_left_position | **0em** / px or em value    | Sets the left position of the current conditions icon                       |
 | separator_top_margin     | **5em** / px or em value    | Sets the top margin of the separator line                                   |
 | slot_l1                  | **daytime_high**            | Sets the value used in current conditions slot l1 : See slots for more info |
@@ -249,3 +238,5 @@ slots (designated r1 - r4).  There are currently 11 possible values that can be 
 - dewpoint
 - empty (empty slot... the slot below does not rise to fill the space)
 - remove (same as empty but the slot below rises to take the place of the slot)
+
+[The complete Lovelace configuration for the card as shown is here.](https://github.com/Anwen747/weatherbit-weather-card/blob/master/lovelace_config.yaml)
