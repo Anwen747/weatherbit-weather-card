@@ -57,8 +57,8 @@ class WeatherbitWeatherCard extends LitElement {
                   <br><i class="icon" id="fcast-icon-${daily.dayIndex}" style="background: none, url(/local/icons/weather_icons/${this.config.static_icons ? "static" : "animated"}/${this.weatherIcons[this._hass.states[daily.condition].state]}.svg) no-repeat; background-size: contain;"></i>
                   ${this.config.old_daily_format ? html`<br><span class="highTemp" id="fcast-high-${daily.dayIndex}">${Math.round(this._hass.states[daily.temphigh].state)}${this.getUOM("temperature")}</span>
                                                         <br><span class="lowTemp" id="fcast-low-${daily.dayIndex}">${Math.round(this._hass.states[daily.templow].state)}${this.getUOM("temperature")}</span>` : 
-                                                   html`<br><span class="highTemp" id="fcast-high-${daily.dayIndex}">${Math.round(this._hass.states[daily.temphigh].state)}</span> / <span class="lowTemp" id="fcast-low-${daily.dayIndex}">${Math.round(this._hass.states[daily.templow].state)}${this.getUOM("temperature")}</span>`}
-                                                   ${this.config.entity_pop_1 && this.config.entity_pop_2 && this.config.entity_pop_3 && this.config.entity_pop_4 && this.config.entity_pop_5 ? html`<br><span class="pop" id="fcast-pop-${daily.dayIndex}">${Math.round(this._hass.states[daily.pop].state)} %</span>` : ``} 
+                                                   html`<br><span class="lowTemp" id="fcast-low-${daily.dayIndex}">${Math.round(this._hass.states[daily.templow].state)}</span> / <span class="highTemp" id="fcast-high-${daily.dayIndex}">${Math.round(this._hass.states[daily.temphigh].state)}${this.getUOM("temperature")}</span>`}
+                  ${this.config.entity_pop_1 && this.config.entity_pop_2 && this.config.entity_pop_3 && this.config.entity_pop_4 && this.config.entity_pop_5 ? html`<br><span class="pop" id="fcast-pop-${daily.dayIndex}">${Math.round(this._hass.states[daily.pop].state)} %</span>` : ``} 
                   ${this.config.entity_pos_1 && this.config.entity_pos_2 && this.config.entity_pos_3 && this.config.entity_pos_4 && this.config.entity_pos_5 ? html`<br><span class="pos" id="fcast-pos-${daily.dayIndex}">${this._hass.states[daily.pos].state} </span><span class="unit"> ${this.getUOM('precipitation')}</span>` : ``}
                   <div class="fcasttooltiptext" id="fcast-summary-${daily.dayIndex}">${ this.config.tooltips ? this._hass.states[daily.summary].state : ""}</div>
                 </div>`)}
@@ -257,15 +257,15 @@ class WeatherbitWeatherCard extends LitElement {
 
   get forecast() {
     var forecastDate1 = new Date();
-    forecastDate1.setDate(forecastDate1.getDate());
+    forecastDate1.setDate(forecastDate1.getDate()+1);
     var forecastDate2 = new Date();
-    forecastDate2.setDate(forecastDate2.getDate()+1);
+    forecastDate2.setDate(forecastDate2.getDate()+2);
     var forecastDate3 = new Date();
-    forecastDate3.setDate(forecastDate3.getDate()+2);
+    forecastDate3.setDate(forecastDate3.getDate()+3);
     var forecastDate4 = new Date();
-    forecastDate4.setDate(forecastDate4.getDate()+3);
+    forecastDate4.setDate(forecastDate4.getDate()+4);
     var forecastDate5 = new Date();
-    forecastDate5.setDate(forecastDate5.getDate()+4);
+    forecastDate5.setDate(forecastDate5.getDate()+5);
     
 
     const forecast1 = { date: forecastDate1,
@@ -327,7 +327,7 @@ class WeatherbitWeatherCard extends LitElement {
     var windSpeed = this.config.entity_wind_speed ? Math.round(this._hass.states[this.config.entity_wind_speed].state) : 0;
     var apparent = this.config.entity_apparent_temp ? Math.round(this._hass.states[this.config.entity_apparent_temp].state) : 0;
     var beaufort = this.config.show_beaufort ? html`Bft: ${this.beaufortWind} - ` : ``;
-    var dewpoint = this.config.entity_dewpoint ? this._hass.states[this.config.entity_dewpoint].state : 0;
+    var dewpoint = this.config.entity_dewpoint ? Math.round(this._hass.states[this.config.entity_dewpoint].state) : 0;
 
     return {
       'conditions': conditions,
@@ -742,8 +742,8 @@ style() {
       this.forecast.forEach((daily) => {
         root.getElementById("fcast-dayName-" + daily.dayIndex).textContent = `${(daily.date).toLocaleDateString(this.config.locale,{weekday: 'short'})}`;
         root.getElementById("fcast-icon-" + daily.dayIndex).style.backgroundImage = `none, url(/local/icons/weather_icons/${this.config.static_icons ? "static" : "animated"}/${this.weatherIcons[this._hass.states[daily.condition].state]}.svg`;
-        root.getElementById("fcast-high-" + daily.dayIndex).textContent = `${Math.round(this._hass.states[daily.temphigh].state)}${this.config.old_daily_format ? this.getUOM("temperature") : ""}`;
-        root.getElementById("fcast-low-" + daily.dayIndex).textContent = `${Math.round(this._hass.states[daily.templow].state)}${this.getUOM("temperature")}`;
+        root.getElementById("fcast-high-" + daily.dayIndex).textContent = `${Math.round(this._hass.states[daily.temphigh].state)}${this.getUOM("temperature")}`;
+        root.getElementById("fcast-low-" + daily.dayIndex).textContent = `${Math.round(this._hass.states[daily.templow].state)}${this.config.old_daily_format ? this.getUOM("temperature") : ""}`;
         if (this.config.entity_pop_1 && this.config.entity_pop_2 && this.config.entity_pop_3 && this.config.entity_pop_4 && this.config.entity_pop_5) { root.getElementById("fcast-pop-" + daily.dayIndex).textContent = `${(this._hass.states[daily.pop].state)} %` }
         if (this.config.entity_pos_1 && this.config.entity_pos_2 && this.config.entity_pos_3 && this.config.entity_pos_4 && this.config.entity_pos_5) { root.getElementById("fcast-pos-" + daily.dayIndex).textContent = `${this._hass.states[daily.pos].state}`}
         root.getElementById("fcast-summary-" + daily.dayIndex).textContent = `${this._hass.states[daily.summary].state}`;
