@@ -81,12 +81,14 @@ The card is very customizable.  You can configure many aspects of its look and f
     entity_summary_5: sensor.wbit_day6_text
     ~~~~
 
-    **Optional entries** add components to the card.  Including the sun sensor will provide the next sunrise and sunset times. The daytime high and all pop and precip entities require template sensors (see below).<br>
+    **Optional entries** add components to the card.  Including the sun sensor will provide the next sunrise and sunset times. The daytime high, daily summary, and all pop and precip entities require template sensors (see below).  There is no daily summary as such for Weatherbit, but you can use this field to place any custom text you'd like at the bottom of
+    the card.  There is a template sensor example below to show the time the data was last updated.<br><br>
     **Note:** entity_pop_1 to 5 lines must all be included for daily pop (probability of precip) to show in forecast.<br>
     **Note:** entity_pos_1 to 5 lines must all be included for daily precip (forecast amount of precipitation) to show in forecast.
 
     ~~~~
     entity_sun: sun.sun
+    entity_daily_summary: sensor.wbit_updated
     entity_daytime_high: sensor.wbit_day1_high
     entity_humidity: sensor.weatherbit_humidity
     entity_pop: sensor.wbit_day1_pop
@@ -150,7 +152,16 @@ The card is very customizable.  You can configure many aspects of its look and f
     wbit_day1_text:
       value_template: "{{ state_attr('sensor.weatherbit_forecast_day_1', 'weather_text') }}"
     ~~~~~
-    **Note:**  If you do not wish to use the tooltip popup feature, you do not need to define these five template sensors.  Simply replace them in the card config with ```sensor.weatherbit_description``` for all five ```entity_summary_*n*:``` entries.  It doesn't matter what they contain, as they will not show without the tooltip feature enabled.
+
+      **Note:**  If you do not wish to use the tooltip popup feature, you do not need to define the five template sensors ```wbit_day*n*_text```.  Simply replace them in the card config with ```sensor.weatherbit_description``` for all five ```entity_summary_*n*:``` entries.  It doesn't matter what they contain, as they will not show without the tooltip feature enabled.
+
+    ~~~~~
+    wbit_updated:
+      value_template: "Data last updated: {{ as_timestamp(state_attr('weather.weatherbit_xxx', 'updated')) | timestamp_custom('%A %-m/%-d at %-I:%M %p') }}"
+    ~~~~~
+
+      An example of a template sensor that will show the last time the data from Weatherbit was updated.  This can be put in ```entity_daily_summary```.
+
     ~~~~~
     wbit_alt_wind:
       value_template: >-
