@@ -166,8 +166,17 @@ The card is very customizable.  You can configure many aspects of its look and f
     wbit_alt_wind:
       value_template: >-
                       {% set winddir = ['North','North-Northeast','Northeast','East-Northeast','East','East-Southeast','Southeast','South-Southeast','South','South-Southwest','Southwest','West-Southwest','West','West-Northwest','Northwest','North-Northwest','North'] %}
-                      {{ states('sensor.dark_sky_wind_speed') | round }} mi/h from the {{ winddir[((states('sensor.dark_sky_wind_bearing') | float / 360)*16) | round]}}
+                      {{ states('sensor.weatherbit_wind_speed') | round }} mi/h from the {{ winddir[((states('sensor.weatherbit_wind_bearing') | float / 360)*16) | round]}}
     ~~~~~
+
+    or, alternatively, if you choose to make a template sensor for the wind gust, you could do:
+
+    ~~~~~
+    wbit_alt_wind:
+      value_template: >-
+        {{ states('sensor.weatherbit_wind_direction') }} {{ states('sensor.weatherbit_wind_speed') | round }} mi/h Gusts {{ states('sensor.wbit_wind_gust') | round }} mi/hr
+    ~~~~~
+
 
     Flags are used to control the look and feel of the card (See below for details).  The card shown above uses the following flag settings:
 

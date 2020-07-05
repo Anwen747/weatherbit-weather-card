@@ -1,64 +1,66 @@
-type: 'custom:weatherbit-weather-card'
-entity_current_conditions: sensor.wbit_icon_condition
-entity_current_text: sensor.weatherbit_description
-entity_temperature: sensor.weatherbit_temperature
-entity_apparent_temp: sensor.weatherbit_apparent_temperature
-entity_forecast_icon_1: sensor.weatherbit_forecast_day_2
-entity_forecast_icon_2: sensor.weatherbit_forecast_day_3
-entity_forecast_icon_3: sensor.weatherbit_forecast_day_4
-entity_forecast_icon_4: sensor.weatherbit_forecast_day_5
-entity_forecast_icon_5: sensor.weatherbit_forecast_day_6
-entity_forecast_high_temp_1: sensor.wbit_day2_high
-entity_forecast_high_temp_2: sensor.wbit_day3_high
-entity_forecast_high_temp_3: sensor.wbit_day4_high
-entity_forecast_high_temp_4: sensor.wbit_day5_high
-entity_forecast_high_temp_5: sensor.wbit_day6_high
-entity_forecast_low_temp_1: sensor.wbit_day2_low
-entity_forecast_low_temp_2: sensor.wbit_day3_low
-entity_forecast_low_temp_3: sensor.wbit_day4_low
-entity_forecast_low_temp_4: sensor.wbit_day5_low
-entity_forecast_low_temp_5: sensor.wbit_day6_low
-entity_summary_1: sensor.wbit_day2_text
-entity_summary_2: sensor.wbit_day3_text
-entity_summary_3: sensor.wbit_day4_text
-entity_summary_4: sensor.wbit_day5_text
-entity_summary_5: sensor.wbit_day6_text
-entity_sun: sun.sun
-entity_daytime_high: sensor.wbit_day1_high
-entity_humidity: sensor.weatherbit_humidity
-entity_pop: sensor.wbit_day1_pop
-entity_pressure: sensor.weatherbit_pressure
-entity_visibility: sensor.weatherbit_visibility
-entity_wind_bearing: sensor.weatherbit_wind_bearing
-entity_wind_speed: sensor.weatherbit_wind_speed
-entity_dewpoint: sensor.weatherbit_dewpoint
-entity_pop_1: sensor.wbit_day2_pop
-entity_pop_2: sensor.wbit_day3_pop
-entity_pop_3: sensor.wbit_day4_pop
-entity_pop_4: sensor.wbit_day5_pop
-entity_pop_5: sensor.wbit_day6_pop
-entity_pos_1: sensor.wbit_day2_precip
-entity_pos_2: sensor.wbit_day3_precip
-entity_pos_3: sensor.wbit_day4_precip
-entity_pos_4: sensor.wbit_day5_precip
-entity_pos_5: sensor.wbit_day6_precip
-slot_l3: pop
-slot_r1: humidity
-slot_r2: dewpoint
-slot_r3: pressure
-locale: en
-static_icons: true
-tooltips: true
-tooltip_bg_color: 'rgb( 75,155,239)'
-tooltip_border_color: orange
-tooltip_border_width: 3
-tooltip_caret_size: 10
-tooltip_fg_color: '#fff'
-tooltip_left_offset: -12
-tooltip_width: 100
-old_daily_format: false
-time_format: 12
-show_beaufort: false
-show_separator: false
-current_text_top_margin: 65px
-forecast_height: 10em
+    - type: 'custom:weatherbit-weather-card'
+      entity_current_conditions: sensor.wbit_icon_condition
+      entity_current_text: sensor.weatherbit_description
+      entity_temperature: sensor.weatherbit_temperature
+      entity_apparent_temp: sensor.weatherbit_apparent_temperature
+      entity_forecast_icon_1: sensor.weatherbit_forecast_day_2
+      entity_forecast_icon_2: sensor.weatherbit_forecast_day_3
+      entity_forecast_icon_3: sensor.weatherbit_forecast_day_4
+      entity_forecast_icon_4: sensor.weatherbit_forecast_day_5
+      entity_forecast_icon_5: sensor.weatherbit_forecast_day_6
+      entity_forecast_high_temp_1: sensor.wbit_day2_high
+      entity_forecast_high_temp_2: sensor.wbit_day3_high
+      entity_forecast_high_temp_3: sensor.wbit_day4_high
+      entity_forecast_high_temp_4: sensor.wbit_day5_high
+      entity_forecast_high_temp_5: sensor.wbit_day6_high
+      entity_forecast_low_temp_1: sensor.wbit_day2_low
+      entity_forecast_low_temp_2: sensor.wbit_day3_low
+      entity_forecast_low_temp_3: sensor.wbit_day4_low
+      entity_forecast_low_temp_4: sensor.wbit_day5_low
+      entity_forecast_low_temp_5: sensor.wbit_day6_low
+      entity_summary_1: sensor.wbit_day2_text
+      entity_summary_2: sensor.wbit_day3_text
+      entity_summary_3: sensor.wbit_day4_text
+      entity_summary_4: sensor.wbit_day5_text
+      entity_summary_5: sensor.wbit_day6_text
+      entity_sun: sun.sun
+      entity_daily_summary: sensor.wbit_updated
+      entity_daytime_high: sensor.wbit_day1_high
+      entity_humidity: sensor.weatherbit_humidity
+      entity_pop: sensor.wbit_day1_pop
+      entity_pressure: sensor.weatherbit_pressure
+      entity_visibility: sensor.weatherbit_visibility
+      entity_wind_bearing: sensor.weatherbit_wind_bearing
+      entity_wind_speed: sensor.weatherbit_wind_speed
+      entity_dewpoint: sensor.weatherbit_dewpoint
+      entity_pop_1: sensor.wbit_day2_pop
+      entity_pop_2: sensor.wbit_day3_pop
+      entity_pop_3: sensor.wbit_day4_pop
+      entity_pop_4: sensor.wbit_day5_pop
+      entity_pop_5: sensor.wbit_day6_pop
+      entity_pos_1: sensor.wbit_day2_precip
+      entity_pos_2: sensor.wbit_day3_precip
+      entity_pos_3: sensor.wbit_day4_precip
+      entity_pos_4: sensor.wbit_day5_precip
+      entity_pos_5: sensor.wbit_day6_precip
+      alt_wind: sensor.wbit_alt_wind
+      slot_l3: pop
+      slot_r1: humidity
+      slot_r2: dewpoint
+      slot_r3: pressure
+      locale: en
+      static_icons: true
+      tooltips: true
+      tooltip_bg_color: 'rgb( 75,155,239)'
+      tooltip_border_color: orange
+      tooltip_border_width: 3
+      tooltip_caret_size: 10
+      tooltip_fg_color: '#fff'
+      tooltip_left_offset: -12
+      tooltip_width: 100
+      old_daily_format: false
+      time_format: 12
+      show_beaufort: false
+      show_separator: false
+      current_text_top_margin: 65px
+      forecast_height: 10em
