@@ -1,8 +1,15 @@
+// #### Add card info to console
+console.info(
+  `%c WEATHERBIT-WEATHER-CARD  \n%c  Version 2.0    `,
+  "color: orange; font-weight: bold; background: black",
+  "color: white; font-weight: bold; background: dimgray",
+);
+
 // #####
 // ##### Get the LitElement and HTML classes from an already defined HA Lovelace class
 // #####
-var LitElement = LitElement || Object.getPrototypeOf(customElements.get("hui-masonry-view") || customElements.get('hui-view'));
-var html = LitElement.prototype.html;
+var Lit = Lit || Object.getPrototypeOf(customElements.get("ha-panel-lovelace") || customElements.get('hui-view'));
+var html = Lit.prototype.html;
 
 
 
@@ -10,7 +17,7 @@ var html = LitElement.prototype.html;
 // ##### Custom Card Definition begins
 // #####
 
-class WeatherbitWeatherCard extends LitElement {
+class WeatherbitWeatherCard extends Lit {
 
   // #####
   // ##### Define Render Template
@@ -717,26 +724,8 @@ class WeatherbitWeatherCard extends LitElement {
 
   set hass(hass) {
 
-    var interval = this.config.refresh_interval || 30;
-    var doRefresh = false;
-
-    // Make sure hass is assigned first time.
-    if (!this._initialized) {
-      this._initialized = true;
-      this._lasRefresh = new Date();
-      doRefresh = true;
-    }
-
-    var now = new Date();
-
-    // Check if refresh interval has been exceeded and refresh if necessary
-    if (Math.round((now - this._lastRefresh) / 1000) > interval) { doRefresh = true; }
-
-    if (doRefresh) {
-      this._lastRefresh = new Date();
-      this._hass = hass;
-      this.updateValues();
-    }
+    this._hass = hass;
+    if (this.shadowRoot) { this.updateValues(); }
   }
 
 
