@@ -2,6 +2,8 @@
 
 ![image](weatherbit-card.jpg)
 
+**This is card is no longer being maintained.  A good replacement is the Custom Animated Weather Card by DavidFW1960 which can be found in the HACS store of Home Assistant.**
+
 This card is a modification of iammexx/home-assistant-config dark-sky-weather-card.  It adds the dewpoint to the optional slot entities, uses the correct UOM for barometric pressure, and adds the forecasted amount of precipitation to the forecast section if enabled.  There are also some minor stylistic changes.
 
 The Weatherbit Weather Card provides current and forecasted weather conditions using the Weatherbit platform.  You configure the card by passing in sensor entities from the Weatherbit platform.  Some sensors required for the card must be created using template sensors.
